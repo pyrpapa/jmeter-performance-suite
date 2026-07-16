@@ -28,21 +28,27 @@
                 <artifactId>jmeter-maven-plugin</artifactId>
                 <version>${jmeter.maven.plugin.version}</version>
                 <executions>
-                    <execution>
-                        <id>jmeter-tests</id>
-                        <phase>verify</phase>
-                        <goals>
-                            <goal>jmeter</goal>
-                        </goals>
-                    </execution>
-                    <execution>
-                        <id>jmeter-check-results</id>
-                        <phase>verify</phase>
-                        <goals>
-                            <goal>results</goal>
-                        </goals>
-                    </execution>
-                </executions>
+					<execution>
+						<id>configuration</id>
+						<goals>
+							<goal>configure</goal>
+						</goals>
+					</execution>
+					<execution>
+						<id>jmeter-tests</id>
+						<phase>verify</phase>
+						<goals>
+							<goal>jmeter</goal>
+						</goals>
+					</execution>
+					<execution>
+						<id>jmeter-check-results</id>
+						<phase>verify</phase>
+						<goals>
+							<goal>results</goal>
+						</goals>
+					</execution>
+				</executions>
                 <configuration>
                     <jmeterVersion>${jmeter.version}</jmeterVersion>
                     <testFilesIncluded>
