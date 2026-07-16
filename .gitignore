@@ -1,0 +1,21 @@
+# JMeter generated files
+results/
+target/
+*.jtl
+*.log
+
+# JMeter backup files
+*.jmx.bak
+
+# Maven
+.mvn/
+!.mvn/wrapper/
+
+# IDE
+.idea/
+*.iml
+.vscode/
+
+# OS
+Thumbs.db
+.DS_Store

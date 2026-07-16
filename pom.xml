@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.portfolio</groupId>
+    <artifactId>jmeter-performance-suite</artifactId>
+    <version>1.0.0</version>
+    <packaging>pom</packaging>
+
+    <name>JMeter Performance Test Suite</name>
+    <description>Portfolio performance testing framework using Apache JMeter and Maven</description>
+
+    <properties>
+        <maven.compiler.source>21</maven.compiler.source>
+        <maven.compiler.target>21</maven.compiler.target>
+        <jmeter.maven.plugin.version>3.8.0</jmeter.maven.plugin.version>
+        <jmeter.version>5.6.3</jmeter.version>
+        <test.type>smoke</test.type>
+        <jmeter.error.rate.threshold>1</jmeter.error.rate.threshold>
+    </properties>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>com.lazerycode.jmeter</groupId>
+                <artifactId>jmeter-maven-plugin</artifactId>
+                <version>${jmeter.maven.plugin.version}</version>
+                <executions>
+                    <execution>
+                        <id>jmeter-tests</id>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>jmeter</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>jmeter-check-results</id>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>results</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <jmeterVersion>${jmeter.version}</jmeterVersion>
+                    <testFilesIncluded>
+                        <jMeterTestFile>${test.type}-test.jmx</jMeterTestFile>
+                    </testFilesIncluded>
+                    <testResultsTimestamp>false</testResultsTimestamp>
+                    <overrideRootLogLevel>WARN</overrideRootLogLevel>
+                    <resultsFileFormat>csv</resultsFileFormat>
+                    <generateReports>true</generateReports>
+                    <errorRateThresholdInPercent>${jmeter.error.rate.threshold}</errorRateThresholdInPercent>
+                    <propertiesUser>
+                        <base.url>jsonplaceholder.typicode.com</base.url>
+                        <base.protocol>https</base.protocol>
+                    </propertiesUser>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+    <profiles>
+        <profile>
+            <id>smoke</id>
+            <properties>
+                <test.type>smoke</test.type>
+                <jmeter.error.rate.threshold>0</jmeter.error.rate.threshold>
+            </properties>
+        </profile>
+        <profile>
+            <id>load</id>
+            <properties>
+                <test.type>load</test.type>
+                <jmeter.error.rate.threshold>2</jmeter.error.rate.threshold>
+            </properties>
+        </profile>
+        <profile>
+            <id>stress</id>
+            <properties>
+                <test.type>stress</test.type>
+                <jmeter.error.rate.threshold>5</jmeter.error.rate.threshold>
+            </properties>
+        </profile>
+        <profile>
+            <id>spike</id>
+            <properties>
+                <test.type>spike</test.type>
+                <jmeter.error.rate.threshold>5</jmeter.error.rate.threshold>
+            </properties>
+        </profile>
+    </profiles>
+</project>
