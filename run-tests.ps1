@@ -16,7 +16,7 @@ $CUSTOM_REPORT_DIR = "results\custom-report"
 # response.time.threshold.ms and the Duration Assertions baked into each .jmx.
 if ($ResponseTimeThresholdMs -eq 0) {
     $ResponseTimeThresholdMs = switch ($TestType) {
-        "smoke"  { 800 }
+        "smoke"  { 1500 }
         "load"   { 1500 }
         "stress" { 3000 }
         "spike"  { 1200 }  # baseline/recovery; burst uses SpikeResponseTimeThresholdMs

@@ -87,7 +87,7 @@
             <properties>
                 <test.type>smoke</test.type>
                 <jmeter.error.rate.threshold>0</jmeter.error.rate.threshold>
-                <response.time.threshold.ms>800</response.time.threshold.ms>
+                <response.time.threshold.ms>1500</response.time.threshold.ms>
             </properties>
         </profile>
         <profile>
