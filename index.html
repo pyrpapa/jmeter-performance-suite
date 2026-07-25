@@ -110,16 +110,69 @@
       <div class="logo">J</div>
       <div class="brand-text"><div class="title">JMeter Performance Suite</div><div class="subtitle">Custom Dashboard</div></div>
     </div>
-    <div class="meta">Generated 2026-07-25 18:04 UTC &middot; source: all-results &middot; overall: <span class="badge badge-good">&#10003; PASS</span></div>
+    <div class="meta">Generated 2026-07-25 18:14 UTC &middot; source: all-results &middot; overall: <span class="badge badge-good">&#10003; PASS</span></div>
   </header>
   <div class="content">
   <div class="summary-strip">
-    <p class="muted">No result files found yet.</p>
+    <div class="summary-chip"><span>Spike</span><span class="badge badge-good">&#10003; PASS</span></div>
   </div>
-  <section class="card"><h2>Smoke Test <span class="muted">(no data)</span></h2><p class="muted">The smoke-test job succeeded, but no matching .jtl file could be found in the downloaded artifacts. Unlike the other cases above, this one does look like a report/artifact-wiring issue worth investigating rather than expected behavior.</p></section>
-<section class="card"><h2>Load Test <span class="muted">(no data)</span></h2><p class="muted">The load-test job succeeded, but no matching .jtl file could be found in the downloaded artifacts. Unlike the other cases above, this one does look like a report/artifact-wiring issue worth investigating rather than expected behavior.</p></section>
-<section class="card"><h2>Stress Test <span class="muted">(no data)</span></h2><p class="muted">The stress-test job succeeded, but no matching .jtl file could be found in the downloaded artifacts. Unlike the other cases above, this one does look like a report/artifact-wiring issue worth investigating rather than expected behavior.</p></section>
-<section class="card"><h2>Spike Test <span class="muted">(no data)</span></h2><p class="muted">The spike-test job succeeded, but no matching .jtl file could be found in the downloaded artifacts. Unlike the other cases above, this one does look like a report/artifact-wiring issue worth investigating rather than expected behavior.</p></section>
+  <section class="card"><h2>Smoke Test <span class="muted">(no data)</span></h2><p class="muted">A *smoke*.jtl file was found but contained no sample rows.</p></section>
+<section class="card"><h2>Load Test <span class="muted">(no data)</span></h2><p class="muted">A *load*.jtl file was found but contained no sample rows.</p></section>
+<section class="card"><h2>Stress Test <span class="muted">(no data)</span></h2><p class="muted">A *stress*.jtl file was found but contained no sample rows.</p></section>
+
+    <section class="card">
+      <div class="card-header">
+        <h2>Spike Test</h2>
+        <span class="badge badge-good">&#10003; PASS</span>
+      </div>
+      <div class="stat-row">
+        <div class="stat-tile">
+          <div class="stat-label">Samples</div>
+          <div class="stat-value">1300</div>
+        </div>
+        <div class="stat-tile">
+          <div class="stat-label">Error rate</div>
+          <div class="stat-value">0.00%</div>
+          <div class="stat-sub">gate: &le;5% &middot; 0 broken, 0 slow-only</div>
+        </div>
+        <div class="stat-tile">
+          <div class="stat-label">Avg response</div>
+          <div class="stat-value">133 ms</div>
+        </div>
+        <div class="stat-tile">
+          <div class="stat-label">p95 response</div>
+          <div class="stat-value">1033 ms</div>
+        </div>
+        <div class="stat-tile">
+          <div class="stat-label">Slow samples</div>
+          <div class="stat-value">0</div>
+          <div class="stat-sub">SLA: 1200 ms baseline/recovery, 3000 ms during burst</div>
+        </div>
+      </div>
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>Request</th>
+            <th class="num">Count</th>
+            <th class="num">Avg</th>
+            <th class="num">p95</th>
+            <th class="num">Max</th>
+            <th class="num">SLA</th>
+            <th>p95 vs SLA</th>
+            <th class="num" title="Wrong status code or other non-timing assertion failure - the call is actually broken">Broken</th>
+            <th class="num" title="Call completed but took longer than the SLA, independent of pass/fail">Slow (&gt; SLA)</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Spike burst · GET /posts</td><td class="num">600</td><td class="num">262 ms</td><td class="num">1644 ms</td><td class="num">2275 ms</td><td class="num">3000 ms</td><td><div class="bar-track"><div class="bar-fill" style="width:47.7%;background:var(--purple);"></div><div class="bar-threshold" style="left:87.0%;" title="SLA threshold: 3000 ms"></div></div></td><td class="num" title="Wrong status code or other non-timing assertion failure">0 (0.0%)</td><td class="num" title="Call completed but took longer than the SLA, regardless of pass/fail">0 (0.0%)</td><td><span class="dot dot-good"></span></td></tr>
+<tr><td>Spike burst · GET /users</td><td class="num">600</td><td class="num">20 ms</td><td class="num">62 ms</td><td class="num">106 ms</td><td class="num">3000 ms</td><td><div class="bar-track"><div class="bar-fill" style="width:1.8%;background:var(--purple);"></div><div class="bar-threshold" style="left:87.0%;" title="SLA threshold: 3000 ms"></div></div></td><td class="num" title="Wrong status code or other non-timing assertion failure">0 (0.0%)</td><td class="num" title="Call completed but took longer than the SLA, regardless of pass/fail">0 (0.0%)</td><td><span class="dot dot-good"></span></td></tr>
+<tr><td>Recovery · GET /posts</td><td class="num">50</td><td class="num">29 ms</td><td class="num">28 ms</td><td class="num">753 ms</td><td class="num">1200 ms</td><td><div class="bar-track"><div class="bar-fill" style="width:0.8%;background:var(--purple);"></div><div class="bar-threshold" style="left:34.8%;" title="SLA threshold: 1200 ms"></div></div></td><td class="num" title="Wrong status code or other non-timing assertion failure">0 (0.0%)</td><td class="num" title="Call completed but took longer than the SLA, regardless of pass/fail">0 (0.0%)</td><td><span class="dot dot-good"></span></td></tr>
+<tr><td>Baseline · GET /posts</td><td class="num">50</td><td class="num">39 ms</td><td class="num">19 ms</td><td class="num">1182 ms</td><td class="num">1200 ms</td><td><div class="bar-track"><div class="bar-fill" style="width:0.6%;background:var(--purple);"></div><div class="bar-threshold" style="left:34.8%;" title="SLA threshold: 1200 ms"></div></div></td><td class="num" title="Wrong status code or other non-timing assertion failure">0 (0.0%)</td><td class="num" title="Call completed but took longer than the SLA, regardless of pass/fail">0 (0.0%)</td><td><span class="dot dot-good"></span></td></tr>
+        </tbody>
+      </table>
+    </section>
+    
   <footer>
     <p>Each request row is checked against two independent gates: JMeter's Duration
     Assertion (fails the sample, feeding the Maven error-rate gate) and this
