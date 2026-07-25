@@ -3,7 +3,13 @@
   <hashTree>
     <TestPlan guiclass="TestPlanGui" testclass="TestPlan" testname="Stress Test Plan">
       <elementProp name="TestPlan.user_defined_variables" elementType="Arguments" guiclass="ArgumentsPanel" testclass="Arguments">
-        <collectionProp name="Arguments.arguments"/>
+        <collectionProp name="Arguments.arguments">
+          <elementProp name="response_time_threshold_ms" elementType="Argument">
+            <stringProp name="Argument.name">response_time_threshold_ms</stringProp>
+            <stringProp name="Argument.value">${__P(response_time_threshold_ms,3000)}</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+        </collectionProp>
       </elementProp>
       <boolProp name="TestPlan.functional_mode">false</boolProp>
       <boolProp name="TestPlan.serialize_threadgroups">false</boolProp>
@@ -44,6 +50,10 @@
             <intProp name="Assertion.test_type">8</intProp>
           </ResponseAssertion>
           <hashTree/>
+          <DurationAssertion guiclass="DurationAssertionGui" testclass="DurationAssertion" testname="Assert Response Time &lt;= threshold">
+            <stringProp name="DurationAssertion.duration">${response_time_threshold_ms}</stringProp>
+          </DurationAssertion>
+          <hashTree/>
         </hashTree>
 
         <!-- GET /users -->
@@ -65,9 +75,13 @@
               <stringProp name="200">200</stringProp>
             </collectionProp>
             <stringProp name="Assertion.test_field">Assertion.response_code</stringProp>
-            <boolProp name="Assumption.assume_success">false</boolProp>
+            <boolProp name="Assertion.assume_success">false</boolProp>
             <intProp name="Assertion.test_type">8</intProp>
           </ResponseAssertion>
+          <hashTree/>
+          <DurationAssertion guiclass="DurationAssertionGui" testclass="DurationAssertion" testname="Assert Response Time &lt;= threshold">
+            <stringProp name="DurationAssertion.duration">${response_time_threshold_ms}</stringProp>
+          </DurationAssertion>
           <hashTree/>
         </hashTree>
 
@@ -94,11 +108,15 @@
             <intProp name="Assertion.test_type">8</intProp>
           </ResponseAssertion>
           <hashTree/>
+          <DurationAssertion guiclass="DurationAssertionGui" testclass="DurationAssertion" testname="Assert Response Time &lt;= threshold">
+            <stringProp name="DurationAssertion.duration">${response_time_threshold_ms}</stringProp>
+          </DurationAssertion>
+          <hashTree/>
         </hashTree>
 
         <!-- CSV Data Set -->
         <CSVDataSet guiclass="TestBeanGUI" testclass="CSVDataSet" testname="Test Data CSV">
-          <stringProp name="filename">C:\Projects\Jmeter-Performance-Suite\src\test\resources\test-data.csv</stringProp>
+          <stringProp name="filename">src/test/resources/test-data.csv</stringProp>
           <stringProp name="variableNames">userId,postId,username</stringProp>
           <boolProp name="ignoreFirstLine">true</boolProp>
           <stringProp name="delimiter">,</stringProp>
@@ -142,7 +160,7 @@
               <idleTime>true</idleTime>
             </value>
           </objProp>
-          <stringProp name="filename">C:\Projects\Jmeter-Performance-Suite\results\stress-results.jtl</stringProp>
+          <stringProp name="filename"></stringProp>
         </ResultCollector>
         <hashTree/>
 

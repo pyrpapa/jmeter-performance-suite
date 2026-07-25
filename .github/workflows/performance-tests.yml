@@ -37,7 +37,9 @@ jobs:
         if: always()
         with:
           name: smoke-test-results
-          path: target/jmeter/results/
+          path: |
+            target/jmeter/results/
+            target/jmeter/reports/
           retention-days: 30
 
   load-test:
@@ -70,7 +72,9 @@ jobs:
         if: always()
         with:
           name: load-test-results
-          path: target/jmeter/results/
+          path: |
+            target/jmeter/results/
+            target/jmeter/reports/
           retention-days: 30
 
   stress-test:
@@ -103,7 +107,9 @@ jobs:
         if: always()
         with:
           name: stress-test-results
-          path: target/jmeter/results/
+          path: |
+            target/jmeter/results/
+            target/jmeter/reports/
           retention-days: 30
 
   spike-test:
@@ -136,5 +142,52 @@ jobs:
         if: always()
         with:
           name: spike-test-results
-          path: target/jmeter/results/
+          path: |
+            target/jmeter/results/
+            target/jmeter/reports/
           retention-days: 30
+
+  publish-dashboard:
+    name: Publish Custom Dashboard
+    runs-on: ubuntu-latest
+    needs: [smoke-test, load-test, stress-test, spike-test]
+    if: always()
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+
+      - name: Download all test-result artifacts
+        uses: actions/download-artifact@v4
+        with:
+          pattern: '*-test-results'
+          path: all-results
+          merge-multiple: true
+
+      - name: Build consolidated custom HTML dashboard
+        run: python3 scripts/generate_dashboard.py --results-dir all-results --output all-results/custom-report/index.html
+        continue-on-error: true  # still publish the dashboard even if a test type failed its gate
+
+      - name: Upload custom dashboard
+        uses: actions/upload-artifact@v4
+        with:
+          name: custom-dashboard
+          path: all-results/custom-report/
+          retention-days: 30
+
+      # Optional: publish the dashboard to GitHub Pages so it's viewable at a
+      # stable URL instead of only as a downloadable artifact. Requires Pages
+      # to be enabled for this repo (Settings -> Pages -> Source: gh-pages
+      # branch) the first time this runs.
+      - name: Deploy dashboard to GitHub Pages
+        if: github.ref == 'refs/heads/master' && github.event_name == 'push'
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: all-results/custom-report
+          destination_dir: dashboard

@@ -3,7 +3,18 @@
   <hashTree>
     <TestPlan guiclass="TestPlanGui" testclass="TestPlan" testname="Spike Test Plan">
       <elementProp name="TestPlan.user_defined_variables" elementType="Arguments" guiclass="ArgumentsPanel" testclass="Arguments">
-        <collectionProp name="Arguments.arguments"/>
+        <collectionProp name="Arguments.arguments">
+          <elementProp name="response_time_threshold_ms" elementType="Argument">
+            <stringProp name="Argument.name">response_time_threshold_ms</stringProp>
+            <stringProp name="Argument.value">${__P(response_time_threshold_ms,1200)}</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="spike_response_time_threshold_ms" elementType="Argument">
+            <stringProp name="Argument.name">spike_response_time_threshold_ms</stringProp>
+            <stringProp name="Argument.value">${__P(spike_response_time_threshold_ms,3000)}</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+        </collectionProp>
       </elementProp>
       <boolProp name="TestPlan.functional_mode">false</boolProp>
       <boolProp name="TestPlan.serialize_threadgroups">false</boolProp>
@@ -42,6 +53,10 @@
             <boolProp name="Assertion.assume_success">false</boolProp>
             <intProp name="Assertion.test_type">8</intProp>
           </ResponseAssertion>
+          <hashTree/>
+          <DurationAssertion guiclass="DurationAssertionGui" testclass="DurationAssertion" testname="Assert Response Time &lt;= threshold">
+            <stringProp name="DurationAssertion.duration">${response_time_threshold_ms}</stringProp>
+          </DurationAssertion>
           <hashTree/>
         </hashTree>
         <ConstantTimer guiclass="ConstantTimerGui" testclass="ConstantTimer" testname="Think Time 1s">
@@ -83,6 +98,10 @@
             <intProp name="Assertion.test_type">8</intProp>
           </ResponseAssertion>
           <hashTree/>
+          <DurationAssertion guiclass="DurationAssertionGui" testclass="DurationAssertion" testname="Assert Response Time &lt;= threshold">
+            <stringProp name="DurationAssertion.duration">${spike_response_time_threshold_ms}</stringProp>
+          </DurationAssertion>
+          <hashTree/>
         </hashTree>
         <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="GET /users">
           <stringProp name="HTTPSampler.domain">jsonplaceholder.typicode.com</stringProp>
@@ -105,6 +124,10 @@
             <boolProp name="Assertion.assume_success">false</boolProp>
             <intProp name="Assertion.test_type">8</intProp>
           </ResponseAssertion>
+          <hashTree/>
+          <DurationAssertion guiclass="DurationAssertionGui" testclass="DurationAssertion" testname="Assert Response Time &lt;= threshold">
+            <stringProp name="DurationAssertion.duration">${spike_response_time_threshold_ms}</stringProp>
+          </DurationAssertion>
           <hashTree/>
         </hashTree>
       </hashTree>
@@ -142,6 +165,10 @@
             <intProp name="Assertion.test_type">8</intProp>
           </ResponseAssertion>
           <hashTree/>
+          <DurationAssertion guiclass="DurationAssertionGui" testclass="DurationAssertion" testname="Assert Response Time &lt;= threshold">
+            <stringProp name="DurationAssertion.duration">${response_time_threshold_ms}</stringProp>
+          </DurationAssertion>
+          <hashTree/>
         </hashTree>
         <ConstantTimer guiclass="ConstantTimerGui" testclass="ConstantTimer" testname="Think Time 1s">
           <stringProp name="ConstantTimer.delay">1000</stringProp>
@@ -176,7 +203,7 @@
             <idleTime>true</idleTime>
           </value>
         </objProp>
-        <stringProp name="filename">C:\Projects\Jmeter-Performance-Suite\results\spike-results.jtl</stringProp>
+        <stringProp name="filename"></stringProp>
       </ResultCollector>
       <hashTree/>
 

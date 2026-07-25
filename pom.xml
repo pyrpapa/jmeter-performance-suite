@@ -19,6 +19,8 @@
         <jmeter.version>5.6.3</jmeter.version>
         <test.type>smoke</test.type>
         <jmeter.error.rate.threshold>1</jmeter.error.rate.threshold>
+        <response.time.threshold.ms>1000</response.time.threshold.ms>
+        <spike.response.time.threshold.ms>3000</spike.response.time.threshold.ms>
     </properties>
 
     <build>
@@ -62,6 +64,8 @@
                     <propertiesUser>
                         <base.url>jsonplaceholder.typicode.com</base.url>
                         <base.protocol>https</base.protocol>
+                        <response_time_threshold_ms>${response.time.threshold.ms}</response_time_threshold_ms>
+                        <spike_response_time_threshold_ms>${spike.response.time.threshold.ms}</spike_response_time_threshold_ms>
                     </propertiesUser>
                 </configuration>
             </plugin>
@@ -74,6 +78,7 @@
             <properties>
                 <test.type>smoke</test.type>
                 <jmeter.error.rate.threshold>0</jmeter.error.rate.threshold>
+                <response.time.threshold.ms>800</response.time.threshold.ms>
             </properties>
         </profile>
         <profile>
@@ -81,6 +86,7 @@
             <properties>
                 <test.type>load</test.type>
                 <jmeter.error.rate.threshold>2</jmeter.error.rate.threshold>
+                <response.time.threshold.ms>1500</response.time.threshold.ms>
             </properties>
         </profile>
         <profile>
@@ -88,6 +94,7 @@
             <properties>
                 <test.type>stress</test.type>
                 <jmeter.error.rate.threshold>5</jmeter.error.rate.threshold>
+                <response.time.threshold.ms>3000</response.time.threshold.ms>
             </properties>
         </profile>
         <profile>
@@ -95,6 +102,8 @@
             <properties>
                 <test.type>spike</test.type>
                 <jmeter.error.rate.threshold>5</jmeter.error.rate.threshold>
+                <response.time.threshold.ms>1200</response.time.threshold.ms>
+                <spike.response.time.threshold.ms>3000</spike.response.time.threshold.ms>
             </properties>
         </profile>
     </profiles>

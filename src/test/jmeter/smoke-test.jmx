@@ -29,6 +29,11 @@
             <stringProp name="Argument.value">30000</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
           </elementProp>
+          <elementProp name="response_time_threshold_ms" elementType="Argument">
+            <stringProp name="Argument.name">response_time_threshold_ms</stringProp>
+            <stringProp name="Argument.value">${__P(response_time_threshold_ms,800)}</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
         </collectionProp>
       </elementProp>
       <boolProp name="TestPlan.functional_mode">false</boolProp>
@@ -108,6 +113,10 @@ log.info(&quot;env_url resolved to: &quot; + resolved)
               <stringProp name="Assertion.custom_message"></stringProp>
             </ResponseAssertion>
             <hashTree/>
+            <DurationAssertion guiclass="DurationAssertionGui" testclass="DurationAssertion" testname="Assert Response Time &lt;= threshold">
+              <stringProp name="DurationAssertion.duration">${response_time_threshold_ms}</stringProp>
+            </DurationAssertion>
+            <hashTree/>
             <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="Extract Token" enabled="true">
               <stringProp name="JSONPostProcessor.referenceNames">UserToken</stringProp>
               <stringProp name="JSONPostProcessor.jsonPathExprs">$.id</stringProp>
@@ -150,6 +159,10 @@ log.info(&quot;env_url resolved to: &quot; + resolved)
             <intProp name="Assertion.test_type">8</intProp>
             <stringProp name="Assertion.custom_message"></stringProp>
           </ResponseAssertion>
+          <hashTree/>
+          <DurationAssertion guiclass="DurationAssertionGui" testclass="DurationAssertion" testname="Assert Response Time &lt;= threshold">
+            <stringProp name="DurationAssertion.duration">${response_time_threshold_ms}</stringProp>
+          </DurationAssertion>
           <hashTree/>
           <JSR223PostProcessor guiclass="TestBeanGUI" testclass="JSR223PostProcessor" testname="Re-auth on 401">
             <stringProp name="cacheKey">false</stringProp>
@@ -210,6 +223,10 @@ if (prev.getResponseCode() == &quot;401&quot;) {
             <intProp name="Assertion.test_type">8</intProp>
             <stringProp name="Assertion.custom_message"></stringProp>
           </ResponseAssertion>
+          <hashTree/>
+          <DurationAssertion guiclass="DurationAssertionGui" testclass="DurationAssertion" testname="Assert Response Time &lt;= threshold">
+            <stringProp name="DurationAssertion.duration">${response_time_threshold_ms}</stringProp>
+          </DurationAssertion>
           <hashTree/>
           <JSR223PostProcessor guiclass="TestBeanGUI" testclass="JSR223PostProcessor" testname="Re-auth on 401">
             <stringProp name="cacheKey">false</stringProp>
@@ -280,6 +297,10 @@ if (prev.getResponseCode() == &quot;401&quot;) {
             <intProp name="Assertion.test_type">8</intProp>
             <stringProp name="Assertion.custom_message"></stringProp>
           </ResponseAssertion>
+          <hashTree/>
+          <DurationAssertion guiclass="DurationAssertionGui" testclass="DurationAssertion" testname="Assert Response Time &lt;= threshold">
+            <stringProp name="DurationAssertion.duration">${response_time_threshold_ms}</stringProp>
+          </DurationAssertion>
           <hashTree/>
           <JSR223PostProcessor guiclass="TestBeanGUI" testclass="JSR223PostProcessor" testname="Re-auth on 401">
             <stringProp name="cacheKey">false</stringProp>
