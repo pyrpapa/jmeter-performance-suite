@@ -1,5 +1,9 @@
 # JMeter Performance Test Suite
 
+[![Performance Tests](https://github.com/pyrpapa/jmeter-performance-suite/actions/workflows/performance-tests.yml/badge.svg)](https://github.com/pyrpapa/jmeter-performance-suite/actions/workflows/performance-tests.yml)
+
+**Live dashboard:** [pyrpapa.github.io/jmeter-performance-suite](https://pyrpapa.github.io/jmeter-performance-suite/) — rebuilt automatically on every push to `master`.
+
 A portfolio-grade performance testing framework using Apache JMeter 5.6.3 and Maven, with automated CI/CD via GitHub Actions.
 
 ## Test Strategy
@@ -23,6 +27,8 @@ All tests run against [JSONPlaceholder](https://jsonplaceholder.typicode.com) �
 - `GET /comments` — retrieve all comments
 
 ## Project Structure
+
+```
 ├── .github/workflows/
 │   └── performance-tests.yml   # CI pipeline
 ├── scripts/
@@ -40,6 +46,7 @@ All tests run against [JSONPlaceholder](https://jsonplaceholder.typicode.com) �
 ├── results/                    # gitignored, generated at runtime
 │   └── custom-report/          # output of generate_dashboard.py
 └── pom.xml
+```
 
 ## Prerequisites
 
@@ -82,7 +89,7 @@ The GitHub Actions workflow runs automatically on every push to `master`:
 4. **Spike** runs in parallel with load/stress
 5. **Publish Custom Dashboard** runs last (`if: always()`), downloads whichever test results are available, and builds the consolidated dashboard
 
-Test results (raw `.jtl` + the stock JMeter dashboard) are uploaded as artifacts and retained for 30 days in the Actions tab. The consolidated custom dashboard is uploaded as its own `custom-dashboard` artifact, and — on pushes to `master` — also published to GitHub Pages under `/dashboard/` (enable Pages once via **Settings → Pages → Source: gh-pages branch** for that link to go live).
+Test results (raw `.jtl`/`.csv` + the stock JMeter dashboard) are uploaded as artifacts and retained for 30 days in the Actions tab. The consolidated custom dashboard is uploaded as its own `custom-dashboard` artifact, and — on pushes to `master` — also published to GitHub Pages at [pyrpapa.github.io/jmeter-performance-suite](https://pyrpapa.github.io/jmeter-performance-suite/), so that link always reflects the most recent run.
 
 ## Error Rate Thresholds
 
@@ -101,7 +108,7 @@ Every HTTP request in every `.jmx` file also carries a **Duration Assertion** �
 
 | Test   | Response Time SLA                                    | Variable(s) |
 |--------|-------------------------------------------------------|-------------|
-| Smoke  | 800 ms                                                 | `response_time_threshold_ms` |
+| Smoke  | 1500 ms                                                | `response_time_threshold_ms` |
 | Load   | 1500 ms                                                | `response_time_threshold_ms` |
 | Stress | 3000 ms                                                | `response_time_threshold_ms` |
 | Spike  | 1200 ms during the baseline/recovery thread groups, 3000 ms during the 300-user burst | `response_time_threshold_ms`, `spike_response_time_threshold_ms` |
