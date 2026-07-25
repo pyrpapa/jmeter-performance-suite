@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JMeter Performance Suite - Dashboard</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg:#F5F7FA; --surface:#FFFFFF; --surfaceAlt:#EEF1F6; --border:#DDE3EC;
+    --purple:#2563EB; --purpleLight:#1D4ED8; --purpleDim:#EAF1FE;
+    --green:#16A34A; --greenDim:#DCFCE7;
+    --text:#1B2436; --textMuted:#5B6577; --textDim:#8C96A6;
+    --white:#0F172A; --orange:#B45309; --red:#DC2626; --blue:#0D9488;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: 'IBM Plex Sans', system-ui, -apple-system, "Segoe UI", sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap { max-width: 1080px; margin: 0 auto; padding: 0 0 60px; }
+  header.top {
+    background: var(--surface); border-bottom: 1px solid var(--border);
+    padding: 13px 24px; display: flex; align-items: center; gap: 12px;
+    position: sticky; top: 0; z-index: 50; flex-wrap: wrap;
+  }
+  .brand { display: flex; align-items: center; gap: 10px; }
+  .logo {
+    width: 32px; height: 32px; border-radius: 8px;
+    background: linear-gradient(135deg, var(--purple), var(--green));
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 800; font-size: 15px; color: #fff; flex: 0 0 auto;
+  }
+  .brand-text .title { font-size: 15px; font-weight: 700; color: var(--white); line-height: 1.2; }
+  .brand-text .subtitle { font-size: 10px; color: var(--textMuted); text-transform: uppercase; letter-spacing: 0.08em; }
+  header.top .meta { color: var(--textMuted); font-size: 12px; margin-left: auto; }
+  .content { padding: 24px 24px 0; }
+  .summary-strip {
+    display: flex; flex-wrap: wrap; gap: 10px; margin: 0 0 20px;
+  }
+  .summary-chip {
+    display: flex; align-items: center; gap: 8px;
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 8px; padding: 8px 14px; font-size: 14px;
+  }
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 20px 20px;
+    margin-bottom: 20px;
+  }
+  .card-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 4px; }
+  .card h2 { margin: 0; font-size: 14px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--textMuted); font-weight: 700; }
+  .badge {
+    display: inline-flex; align-items: center; gap: 6px;
+    font-size: 12px; font-weight: 700; letter-spacing: 0.02em;
+    padding: 4px 10px; border-radius: 999px;
+  }
+  .badge-good { background: var(--greenDim); color: var(--green); }
+  .badge-critical { background: #FDE8E8; color: var(--red); }
+  .stat-row {
+    display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px;
+    margin: 18px 0 20px;
+  }
+  .stat-tile {
+    background: var(--surfaceAlt); border: 1px solid var(--border);
+    border-radius: 10px; padding: 10px 12px;
+  }
+  .stat-label { font-size: 10px; color: var(--textDim); text-transform: uppercase; letter-spacing: 0.06em; }
+  .stat-value { font-family: 'IBM Plex Mono', monospace; font-size: 20px; font-weight: 600; color: var(--white); margin-top: 3px; }
+  .stat-sub { font-size: 11px; color: var(--textDim); margin-top: 2px; }
+  table.data-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  table.data-table th {
+    text-align: left; font-weight: 700; color: var(--textMuted);
+    border-bottom: 1px solid var(--border); padding: 8px 8px;
+    font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em;
+  }
+  table.data-table td { padding: 8px 8px; border-bottom: 1px solid var(--border); vertical-align: middle; }
+  table.data-table td.num, table.data-table th.num { text-align: right; font-family: 'IBM Plex Mono', monospace; }
+  .muted { color: var(--textDim); }
+  .bar-track {
+    position: relative; width: 140px; height: 8px;
+    background: var(--surfaceAlt); border: 1px solid var(--border); border-radius: 4px; overflow: visible;
+  }
+  .bar-fill { position: absolute; top: 0; left: 0; height: 100%; border-radius: 4px; }
+  .bar-threshold {
+    position: absolute; top: -3px; width: 2px; height: 14px;
+    background: var(--textDim);
+  }
+  .dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; }
+  .dot-good { background: var(--green); }
+  .dot-warning { background: var(--orange); }
+  .dot-critical { background: var(--red); }
+  footer { color: var(--textDim); font-size: 12px; margin-top: 24px; line-height: 1.6; }
+  footer p { margin: 0 0 10px; }
+  footer p:last-child { margin-bottom: 0; }
+  footer .legend { display: flex; align-items: center; flex-wrap: wrap; gap: 4px; }
+  footer .legend .dot { margin-left: 4px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <div class="brand">
+      <div class="logo">J</div>
+      <div class="brand-text"><div class="title">JMeter Performance Suite</div><div class="subtitle">Custom Dashboard</div></div>
+    </div>
+    <div class="meta">Generated 2026-07-25 17:48 UTC &middot; source: all-results &middot; overall: <span class="badge badge-good">&#10003; PASS</span></div>
+  </header>
+  <div class="content">
+  <div class="summary-strip">
+    <p class="muted">No result files found yet.</p>
+  </div>
+  <section class="card"><h2>Smoke Test <span class="muted">(no data)</span></h2><p class="muted">The smoke-test job succeeded, but no matching .jtl file could be found in the downloaded artifacts. Unlike the other cases above, this one does look like a report/artifact-wiring issue worth investigating rather than expected behavior.</p></section>
+<section class="card"><h2>Load Test <span class="muted">(no data)</span></h2><p class="muted">The load-test job succeeded, but no matching .jtl file could be found in the downloaded artifacts. Unlike the other cases above, this one does look like a report/artifact-wiring issue worth investigating rather than expected behavior.</p></section>
+<section class="card"><h2>Stress Test <span class="muted">(no data)</span></h2><p class="muted">The stress-test job succeeded, but no matching .jtl file could be found in the downloaded artifacts. Unlike the other cases above, this one does look like a report/artifact-wiring issue worth investigating rather than expected behavior.</p></section>
+<section class="card"><h2>Spike Test <span class="muted">(no data)</span></h2><p class="muted">The spike-test job succeeded, but no matching .jtl file could be found in the downloaded artifacts. Unlike the other cases above, this one does look like a report/artifact-wiring issue worth investigating rather than expected behavior.</p></section>
+  <footer>
+    <p>Each request row is checked against two independent gates: JMeter's Duration
+    Assertion (fails the sample, feeding the Maven error-rate gate) and this
+    report's own re-check of elapsed time against the same SLA &mdash; so a
+    misconfigured assertion can't silently hide a slow endpoint.</p>
+    <p><strong>Broken</strong> vs <strong>Slow</strong> are kept separate on purpose: Broken means the
+    call itself failed (wrong status code or another non-timing assertion) &mdash; something's
+    actually wrong. Slow means the call succeeded but took longer than its SLA &mdash; the API works,
+    it's just not fast enough.</p>
+    <p class="legend">The status dot follows the worse of the two:
+    <span class="dot dot-critical"></span> broken &nbsp;
+    <span class="dot dot-warning"></span> slow only &nbsp;
+    <span class="dot dot-good"></span> healthy</p>
+  </footer>
+  </div>
+</div>
+</body>
+</html>
