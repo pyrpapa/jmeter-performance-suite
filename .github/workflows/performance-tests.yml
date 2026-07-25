@@ -171,6 +171,15 @@ jobs:
           path: all-results
           merge-multiple: true
 
+      - name: List downloaded artifacts (debug)
+        run: |
+          echo "Contents of all-results:"
+          find all-results -type f | sort || echo "all-results is missing or empty"
+          echo "--- Row counts ---"
+          wc -l all-results/results/*.csv || true
+          echo "--- First 3 lines of each ---"
+          for f in all-results/results/*.csv; do echo "== $f =="; head -3 "$f"; done
+
       - name: Build consolidated custom HTML dashboard
         run: >
           python3 scripts/generate_dashboard.py --results-dir all-results --output all-results/custom-report/index.html
