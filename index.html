@@ -110,35 +110,38 @@
       <div class="logo">J</div>
       <div class="brand-text"><div class="title">JMeter Performance Suite</div><div class="subtitle">Custom Dashboard</div></div>
     </div>
-    <div class="meta">Generated 2026-07-25 18:34 UTC &middot; source: all-results &middot; overall: <span class="badge badge-critical">&#10007; FAIL</span></div>
+    <div class="meta">Generated 2026-07-25 18:44 UTC &middot; source: all-results &middot; overall: <span class="badge badge-good">&#10003; PASS</span></div>
   </header>
   <div class="content">
   <div class="summary-strip">
-    <div class="summary-chip"><span>Smoke</span><span class="badge badge-critical">&#10007; FAIL</span></div>
+    <div class="summary-chip"><span>Smoke</span><span class="badge badge-good">&#10003; PASS</span></div>
+<div class="summary-chip"><span>Load</span><span class="badge badge-good">&#10003; PASS</span></div>
+<div class="summary-chip"><span>Stress</span><span class="badge badge-good">&#10003; PASS</span></div>
+<div class="summary-chip"><span>Spike</span><span class="badge badge-good">&#10003; PASS</span></div>
   </div>
   
     <section class="card">
       <div class="card-header">
         <h2>Smoke Test</h2>
-        <span class="badge badge-critical">&#10007; FAIL</span>
+        <span class="badge badge-good">&#10003; PASS</span>
       </div>
       <div class="stat-row">
         <div class="stat-tile">
           <div class="stat-label">Samples</div>
-          <div class="stat-value">1</div>
+          <div class="stat-value">4</div>
         </div>
         <div class="stat-tile">
           <div class="stat-label">Error rate</div>
-          <div class="stat-value">100.00%</div>
-          <div class="stat-sub">gate: &le;0% &middot; 1 broken, 0 slow-only</div>
+          <div class="stat-value">0.00%</div>
+          <div class="stat-sub">gate: &le;0% &middot; 0 broken, 0 slow-only</div>
         </div>
         <div class="stat-tile">
           <div class="stat-label">Avg response</div>
-          <div class="stat-value">1314 ms</div>
+          <div class="stat-value">358 ms</div>
         </div>
         <div class="stat-tile">
           <div class="stat-label">p95 response</div>
-          <div class="stat-value">1314 ms</div>
+          <div class="stat-value">1125 ms</div>
         </div>
         <div class="stat-tile">
           <div class="stat-label">Slow samples</div>
@@ -162,14 +165,183 @@
           </tr>
         </thead>
         <tbody>
-          <tr><td>Login - GET /users/1</td><td class="num">1</td><td class="num">1314 ms</td><td class="num">1314 ms</td><td class="num">1314 ms</td><td class="num">800 ms</td><td><div class="bar-track"><div class="bar-fill" style="width:87.0%;background:var(--red);"></div><div class="bar-threshold" style="left:52.9%;" title="SLA threshold: 800 ms"></div></div></td><td class="num" title="Wrong status code or other non-timing assertion failure">1 (100.0%)</td><td class="num" title="Call completed but took longer than the SLA, regardless of pass/fail">1 (100.0%)</td><td><span class="dot dot-critical"></span></td></tr>
+          <tr><td>Login - GET /users/1</td><td class="num">1</td><td class="num">1307 ms</td><td class="num">1307 ms</td><td class="num">1307 ms</td><td class="num">800 ms</td><td><div class="bar-track"><div class="bar-fill" style="width:87.0%;background:var(--red);"></div><div class="bar-threshold" style="left:53.2%;" title="SLA threshold: 800 ms"></div></div></td><td class="num" title="Wrong status code or other non-timing assertion failure">0 (0.0%)</td><td class="num" title="Call completed but took longer than the SLA, regardless of pass/fail">1 (100.0%)</td><td><span class="dot dot-warning"></span></td></tr>
+<tr><td>POST /posts</td><td class="num">1</td><td class="num">91 ms</td><td class="num">91 ms</td><td class="num">91 ms</td><td class="num">800 ms</td><td><div class="bar-track"><div class="bar-fill" style="width:6.1%;background:var(--purple);"></div><div class="bar-threshold" style="left:53.2%;" title="SLA threshold: 800 ms"></div></div></td><td class="num" title="Wrong status code or other non-timing assertion failure">0 (0.0%)</td><td class="num" title="Call completed but took longer than the SLA, regardless of pass/fail">0 (0.0%)</td><td><span class="dot dot-good"></span></td></tr>
+<tr><td>GET /posts</td><td class="num">1</td><td class="num">21 ms</td><td class="num">21 ms</td><td class="num">21 ms</td><td class="num">800 ms</td><td><div class="bar-track"><div class="bar-fill" style="width:1.4%;background:var(--purple);"></div><div class="bar-threshold" style="left:53.2%;" title="SLA threshold: 800 ms"></div></div></td><td class="num" title="Wrong status code or other non-timing assertion failure">0 (0.0%)</td><td class="num" title="Call completed but took longer than the SLA, regardless of pass/fail">0 (0.0%)</td><td><span class="dot dot-good"></span></td></tr>
+<tr><td>GET /posts/1</td><td class="num">1</td><td class="num">13 ms</td><td class="num">13 ms</td><td class="num">13 ms</td><td class="num">800 ms</td><td><div class="bar-track"><div class="bar-fill" style="width:0.9%;background:var(--purple);"></div><div class="bar-threshold" style="left:53.2%;" title="SLA threshold: 800 ms"></div></div></td><td class="num" title="Wrong status code or other non-timing assertion failure">0 (0.0%)</td><td class="num" title="Call completed but took longer than the SLA, regardless of pass/fail">0 (0.0%)</td><td><span class="dot dot-good"></span></td></tr>
         </tbody>
       </table>
     </section>
     
-<section class="card"><h2>Load Test <span class="muted">(no data)</span></h2><p class="muted">Skipped this run (it only runs after smoke-test passes) — this is expected pipeline gating, not a report bug. Its job never ran, so there&#x27;s no .jtl to show.</p></section>
-<section class="card"><h2>Stress Test <span class="muted">(no data)</span></h2><p class="muted">Skipped this run (it only runs after load-test passes) — this is expected pipeline gating, not a report bug. Its job never ran, so there&#x27;s no .jtl to show.</p></section>
-<section class="card"><h2>Spike Test <span class="muted">(no data)</span></h2><p class="muted">Skipped this run (it only runs after smoke-test passes) — this is expected pipeline gating, not a report bug. Its job never ran, so there&#x27;s no .jtl to show.</p></section>
+
+    <section class="card">
+      <div class="card-header">
+        <h2>Load Test</h2>
+        <span class="badge badge-good">&#10003; PASS</span>
+      </div>
+      <div class="stat-row">
+        <div class="stat-tile">
+          <div class="stat-label">Samples</div>
+          <div class="stat-value">750</div>
+        </div>
+        <div class="stat-tile">
+          <div class="stat-label">Error rate</div>
+          <div class="stat-value">0.00%</div>
+          <div class="stat-sub">gate: &le;2% &middot; 0 broken, 0 slow-only</div>
+        </div>
+        <div class="stat-tile">
+          <div class="stat-label">Avg response</div>
+          <div class="stat-value">33 ms</div>
+        </div>
+        <div class="stat-tile">
+          <div class="stat-label">p95 response</div>
+          <div class="stat-value">75 ms</div>
+        </div>
+        <div class="stat-tile">
+          <div class="stat-label">Slow samples</div>
+          <div class="stat-value">0</div>
+          <div class="stat-sub">SLA: 1500 ms</div>
+        </div>
+      </div>
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>Request</th>
+            <th class="num">Count</th>
+            <th class="num">Avg</th>
+            <th class="num">p95</th>
+            <th class="num">Max</th>
+            <th class="num">SLA</th>
+            <th>p95 vs SLA</th>
+            <th class="num" title="Wrong status code or other non-timing assertion failure - the call is actually broken">Broken</th>
+            <th class="num" title="Call completed but took longer than the SLA, independent of pass/fail">Slow (&gt; SLA)</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>POST /posts</td><td class="num">250</td><td class="num">75 ms</td><td class="num">77 ms</td><td class="num">210 ms</td><td class="num">1500 ms</td><td><div class="bar-track"><div class="bar-fill" style="width:4.5%;background:var(--purple);"></div><div class="bar-threshold" style="left:87.0%;" title="SLA threshold: 1500 ms"></div></div></td><td class="num" title="Wrong status code or other non-timing assertion failure">0 (0.0%)</td><td class="num" title="Call completed but took longer than the SLA, regardless of pass/fail">0 (0.0%)</td><td><span class="dot dot-good"></span></td></tr>
+<tr><td>GET /posts</td><td class="num">250</td><td class="num">15 ms</td><td class="num">20 ms</td><td class="num">1263 ms</td><td class="num">1500 ms</td><td><div class="bar-track"><div class="bar-fill" style="width:1.2%;background:var(--purple);"></div><div class="bar-threshold" style="left:87.0%;" title="SLA threshold: 1500 ms"></div></div></td><td class="num" title="Wrong status code or other non-timing assertion failure">0 (0.0%)</td><td class="num" title="Call completed but took longer than the SLA, regardless of pass/fail">0 (0.0%)</td><td><span class="dot dot-good"></span></td></tr>
+<tr><td>GET /posts/4</td><td class="num">25</td><td class="num">8 ms</td><td class="num">12 ms</td><td class="num">13 ms</td><td class="num">1500 ms</td><td><div class="bar-track"><div class="bar-fill" style="width:0.7%;background:var(--purple);"></div><div class="bar-threshold" style="left:87.0%;" title="SLA threshold: 1500 ms"></div></div></td><td class="num" title="Wrong status code or other non-timing assertion failure">0 (0.0%)</td><td class="num" title="Call completed but took longer than the SLA, regardless of pass/fail">0 (0.0%)</td><td><span class="dot dot-good"></span></td></tr>
+<tr><td>GET /posts/7</td><td class="num">25</td><td class="num">9 ms</td><td class="num">12 ms</td><td class="num">12 ms</td><td class="num">1500 ms</td><td><div class="bar-track"><div class="bar-fill" style="width:0.7%;background:var(--purple);"></div><div class="bar-threshold" style="left:87.0%;" title="SLA threshold: 1500 ms"></div></div></td><td class="num" title="Wrong status code or other non-timing assertion failure">0 (0.0%)</td><td class="num" title="Call completed but took longer than the SLA, regardless of pass/fail">0 (0.0%)</td><td><span class="dot dot-good"></span></td></tr>
+<tr><td>GET /posts/6</td><td class="num">25</td><td class="num">8 ms</td><td class="num">11 ms</td><td class="num">16 ms</td><td class="num">1500 ms</td><td><div class="bar-track"><div class="bar-fill" style="width:0.6%;background:var(--purple);"></div><div class="bar-threshold" style="left:87.0%;" title="SLA threshold: 1500 ms"></div></div></td><td class="num" title="Wrong status code or other non-timing assertion failure">0 (0.0%)</td><td class="num" title="Call completed but took longer than the SLA, regardless of pass/fail">0 (0.0%)</td><td><span class="dot dot-good"></span></td></tr>
+<tr><td>GET /posts/10</td><td class="num">25</td><td class="num">8 ms</td><td class="num">11 ms</td><td class="num">13 ms</td><td class="num">1500 ms</td><td><div class="bar-track"><div class="bar-fill" style="width:0.6%;background:var(--purple);"></div><div class="bar-threshold" style="left:87.0%;" title="SLA threshold: 1500 ms"></div></div></td><td class="num" title="Wrong status code or other non-timing assertion failure">0 (0.0%)</td><td class="num" title="Call completed but took longer than the SLA, regardless of pass/fail">0 (0.0%)</td><td><span class="dot dot-good"></span></td></tr>
+<tr><td>GET /posts/2</td><td class="num">25</td><td class="num">8 ms</td><td class="num">10 ms</td><td class="num">11 ms</td><td class="num">1500 ms</td><td><div class="bar-track"><div class="bar-fill" style="width:0.6%;background:var(--purple);"></div><div class="bar-threshold" style="left:87.0%;" title="SLA threshold: 1500 ms"></div></div></td><td class="num" title="Wrong status code or other non-timing assertion failure">0 (0.0%)</td><td class="num" title="Call completed but took longer than the SLA, regardless of pass/fail">0 (0.0%)</td><td><span class="dot dot-good"></span></td></tr>
+<tr><td>GET /posts/5</td><td class="num">25</td><td class="num">8 ms</td><td class="num">10 ms</td><td class="num">16 ms</td><td class="num">1500 ms</td><td><div class="bar-track"><div class="bar-fill" style="width:0.6%;background:var(--purple);"></div><div class="bar-threshold" style="left:87.0%;" title="SLA threshold: 1500 ms"></div></div></td><td class="num" title="Wrong status code or other non-timing assertion failure">0 (0.0%)</td><td class="num" title="Call completed but took longer than the SLA, regardless of pass/fail">0 (0.0%)</td><td><span class="dot dot-good"></span></td></tr>
+<tr><td>GET /posts/8</td><td class="num">25</td><td class="num">8 ms</td><td class="num">10 ms</td><td class="num">12 ms</td><td class="num">1500 ms</td><td><div class="bar-track"><div class="bar-fill" style="width:0.6%;background:var(--purple);"></div><div class="bar-threshold" style="left:87.0%;" title="SLA threshold: 1500 ms"></div></div></td><td class="num" title="Wrong status code or other non-timing assertion failure">0 (0.0%)</td><td class="num" title="Call completed but took longer than the SLA, regardless of pass/fail">0 (0.0%)</td><td><span class="dot dot-good"></span></td></tr>
+<tr><td>GET /posts/9</td><td class="num">25</td><td class="num">8 ms</td><td class="num">10 ms</td><td class="num">10 ms</td><td class="num">1500 ms</td><td><div class="bar-track"><div class="bar-fill" style="width:0.6%;background:var(--purple);"></div><div class="bar-threshold" style="left:87.0%;" title="SLA threshold: 1500 ms"></div></div></td><td class="num" title="Wrong status code or other non-timing assertion failure">0 (0.0%)</td><td class="num" title="Call completed but took longer than the SLA, regardless of pass/fail">0 (0.0%)</td><td><span class="dot dot-good"></span></td></tr>
+<tr><td>GET /posts/3</td><td class="num">25</td><td class="num">8 ms</td><td class="num">10 ms</td><td class="num">10 ms</td><td class="num">1500 ms</td><td><div class="bar-track"><div class="bar-fill" style="width:0.6%;background:var(--purple);"></div><div class="bar-threshold" style="left:87.0%;" title="SLA threshold: 1500 ms"></div></div></td><td class="num" title="Wrong status code or other non-timing assertion failure">0 (0.0%)</td><td class="num" title="Call completed but took longer than the SLA, regardless of pass/fail">0 (0.0%)</td><td><span class="dot dot-good"></span></td></tr>
+<tr><td>GET /posts/1</td><td class="num">25</td><td class="num">7 ms</td><td class="num">9 ms</td><td class="num">10 ms</td><td class="num">1500 ms</td><td><div class="bar-track"><div class="bar-fill" style="width:0.5%;background:var(--purple);"></div><div class="bar-threshold" style="left:87.0%;" title="SLA threshold: 1500 ms"></div></div></td><td class="num" title="Wrong status code or other non-timing assertion failure">0 (0.0%)</td><td class="num" title="Call completed but took longer than the SLA, regardless of pass/fail">0 (0.0%)</td><td><span class="dot dot-good"></span></td></tr>
+        </tbody>
+      </table>
+    </section>
+    
+
+    <section class="card">
+      <div class="card-header">
+        <h2>Stress Test</h2>
+        <span class="badge badge-good">&#10003; PASS</span>
+      </div>
+      <div class="stat-row">
+        <div class="stat-tile">
+          <div class="stat-label">Samples</div>
+          <div class="stat-value">1800</div>
+        </div>
+        <div class="stat-tile">
+          <div class="stat-label">Error rate</div>
+          <div class="stat-value">0.00%</div>
+          <div class="stat-sub">gate: &le;5% &middot; 0 broken, 0 slow-only</div>
+        </div>
+        <div class="stat-tile">
+          <div class="stat-label">Avg response</div>
+          <div class="stat-value">11 ms</div>
+        </div>
+        <div class="stat-tile">
+          <div class="stat-label">p95 response</div>
+          <div class="stat-value">17 ms</div>
+        </div>
+        <div class="stat-tile">
+          <div class="stat-label">Slow samples</div>
+          <div class="stat-value">0</div>
+          <div class="stat-sub">SLA: 3000 ms</div>
+        </div>
+      </div>
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>Request</th>
+            <th class="num">Count</th>
+            <th class="num">Avg</th>
+            <th class="num">p95</th>
+            <th class="num">Max</th>
+            <th class="num">SLA</th>
+            <th>p95 vs SLA</th>
+            <th class="num" title="Wrong status code or other non-timing assertion failure - the call is actually broken">Broken</th>
+            <th class="num" title="Call completed but took longer than the SLA, independent of pass/fail">Slow (&gt; SLA)</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>GET /posts</td><td class="num">600</td><td class="num">17 ms</td><td class="num">20 ms</td><td class="num">1659 ms</td><td class="num">3000 ms</td><td><div class="bar-track"><div class="bar-fill" style="width:0.6%;background:var(--purple);"></div><div class="bar-threshold" style="left:87.0%;" title="SLA threshold: 3000 ms"></div></div></td><td class="num" title="Wrong status code or other non-timing assertion failure">0 (0.0%)</td><td class="num" title="Call completed but took longer than the SLA, regardless of pass/fail">0 (0.0%)</td><td><span class="dot dot-good"></span></td></tr>
+<tr><td>GET /comments</td><td class="num">600</td><td class="num">10 ms</td><td class="num">13 ms</td><td class="num">27 ms</td><td class="num">3000 ms</td><td><div class="bar-track"><div class="bar-fill" style="width:0.4%;background:var(--purple);"></div><div class="bar-threshold" style="left:87.0%;" title="SLA threshold: 3000 ms"></div></div></td><td class="num" title="Wrong status code or other non-timing assertion failure">0 (0.0%)</td><td class="num" title="Call completed but took longer than the SLA, regardless of pass/fail">0 (0.0%)</td><td><span class="dot dot-good"></span></td></tr>
+<tr><td>GET /users</td><td class="num">600</td><td class="num">7 ms</td><td class="num">10 ms</td><td class="num">12 ms</td><td class="num">3000 ms</td><td><div class="bar-track"><div class="bar-fill" style="width:0.3%;background:var(--purple);"></div><div class="bar-threshold" style="left:87.0%;" title="SLA threshold: 3000 ms"></div></div></td><td class="num" title="Wrong status code or other non-timing assertion failure">0 (0.0%)</td><td class="num" title="Call completed but took longer than the SLA, regardless of pass/fail">0 (0.0%)</td><td><span class="dot dot-good"></span></td></tr>
+        </tbody>
+      </table>
+    </section>
+    
+
+    <section class="card">
+      <div class="card-header">
+        <h2>Spike Test</h2>
+        <span class="badge badge-good">&#10003; PASS</span>
+      </div>
+      <div class="stat-row">
+        <div class="stat-tile">
+          <div class="stat-label">Samples</div>
+          <div class="stat-value">1300</div>
+        </div>
+        <div class="stat-tile">
+          <div class="stat-label">Error rate</div>
+          <div class="stat-value">0.15%</div>
+          <div class="stat-sub">gate: &le;5% &middot; 2 broken, 0 slow-only</div>
+        </div>
+        <div class="stat-tile">
+          <div class="stat-label">Avg response</div>
+          <div class="stat-value">141 ms</div>
+        </div>
+        <div class="stat-tile">
+          <div class="stat-label">p95 response</div>
+          <div class="stat-value">1180 ms</div>
+        </div>
+        <div class="stat-tile">
+          <div class="stat-label">Slow samples</div>
+          <div class="stat-value">2</div>
+          <div class="stat-sub">SLA: 1200 ms baseline/recovery, 3000 ms during burst</div>
+        </div>
+      </div>
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>Request</th>
+            <th class="num">Count</th>
+            <th class="num">Avg</th>
+            <th class="num">p95</th>
+            <th class="num">Max</th>
+            <th class="num">SLA</th>
+            <th>p95 vs SLA</th>
+            <th class="num" title="Wrong status code or other non-timing assertion failure - the call is actually broken">Broken</th>
+            <th class="num" title="Call completed but took longer than the SLA, independent of pass/fail">Slow (&gt; SLA)</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Recovery · GET /posts</td><td class="num">50</td><td class="num">38 ms</td><td class="num">19 ms</td><td class="num">1265 ms</td><td class="num">1200 ms</td><td><div class="bar-track"><div class="bar-fill" style="width:0.5%;background:var(--purple);"></div><div class="bar-threshold" style="left:34.8%;" title="SLA threshold: 1200 ms"></div></div></td><td class="num" title="Wrong status code or other non-timing assertion failure">1 (2.0%)</td><td class="num" title="Call completed but took longer than the SLA, regardless of pass/fail">1 (2.0%)</td><td><span class="dot dot-critical"></span></td></tr>
+<tr><td>Baseline · GET /posts</td><td class="num">50</td><td class="num">43 ms</td><td class="num">18 ms</td><td class="num">1483 ms</td><td class="num">1200 ms</td><td><div class="bar-track"><div class="bar-fill" style="width:0.5%;background:var(--purple);"></div><div class="bar-threshold" style="left:34.8%;" title="SLA threshold: 1200 ms"></div></div></td><td class="num" title="Wrong status code or other non-timing assertion failure">1 (2.0%)</td><td class="num" title="Call completed but took longer than the SLA, regardless of pass/fail">1 (2.0%)</td><td><span class="dot dot-critical"></span></td></tr>
+<tr><td>Spike burst · GET /posts</td><td class="num">600</td><td class="num">284 ms</td><td class="num">1746 ms</td><td class="num">2490 ms</td><td class="num">3000 ms</td><td><div class="bar-track"><div class="bar-fill" style="width:50.6%;background:var(--purple);"></div><div class="bar-threshold" style="left:87.0%;" title="SLA threshold: 3000 ms"></div></div></td><td class="num" title="Wrong status code or other non-timing assertion failure">0 (0.0%)</td><td class="num" title="Call completed but took longer than the SLA, regardless of pass/fail">0 (0.0%)</td><td><span class="dot dot-good"></span></td></tr>
+<tr><td>Spike burst · GET /users</td><td class="num">600</td><td class="num">16 ms</td><td class="num">47 ms</td><td class="num">127 ms</td><td class="num">3000 ms</td><td><div class="bar-track"><div class="bar-fill" style="width:1.4%;background:var(--purple);"></div><div class="bar-threshold" style="left:87.0%;" title="SLA threshold: 3000 ms"></div></div></td><td class="num" title="Wrong status code or other non-timing assertion failure">0 (0.0%)</td><td class="num" title="Call completed but took longer than the SLA, regardless of pass/fail">0 (0.0%)</td><td><span class="dot dot-good"></span></td></tr>
+        </tbody>
+      </table>
+    </section>
+    
   <footer>
     <p>Each request row is checked against two independent gates: JMeter's Duration
     Assertion (fails the sample, feeding the Maven error-rate gate) and this
