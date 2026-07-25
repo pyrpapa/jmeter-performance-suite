@@ -153,7 +153,7 @@ jobs:
     needs: [smoke-test, load-test, stress-test, spike-test]
     if: always()
     permissions:
-      contents: write
+      contents: write   # required so the GitHub Pages deploy step can push to gh-pages
 
     steps:
       - name: Checkout code
@@ -172,7 +172,9 @@ jobs:
           merge-multiple: true
 
       - name: Build consolidated custom HTML dashboard
-        run: python3 scripts/generate_dashboard.py --results-dir all-results --output all-results/custom-report/index.html
+        run: >
+          python3 scripts/generate_dashboard.py --results-dir all-results --output all-results/custom-report/index.html
+          --job-status "smoke=${{ needs.smoke-test.result }},load=${{ needs.load-test.result }},stress=${{ needs.stress-test.result }},spike=${{ needs.spike-test.result }}"
         continue-on-error: true  # still publish the dashboard even if a test type failed its gate
 
       - name: Upload custom dashboard
@@ -182,14 +184,15 @@ jobs:
           path: all-results/custom-report/
           retention-days: 30
 
-      # Optional: publish the dashboard to GitHub Pages so it's viewable at a
-      # stable URL instead of only as a downloadable artifact. Requires Pages
-      # to be enabled for this repo (Settings -> Pages -> Source: gh-pages
-      # branch) the first time this runs.
+      # Publishes the dashboard to GitHub Pages so it's viewable at a stable,
+      # shareable URL (https://<user>.github.io/<repo>/) instead of only as a
+      # downloadable artifact - good for linking from the README. Requires
+      # Pages to be enabled for this repo once (Settings -> Pages -> Source:
+      # Deploy from a branch -> gh-pages -> / (root)). Runs on every push to
+      # master, so the live link always reflects the most recent run.
       - name: Deploy dashboard to GitHub Pages
         if: github.ref == 'refs/heads/master' && github.event_name == 'push'
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: all-results/custom-report
-          destination_dir: dashboard
