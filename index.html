@@ -110,43 +110,40 @@
       <div class="logo">J</div>
       <div class="brand-text"><div class="title">JMeter Performance Suite</div><div class="subtitle">Custom Dashboard</div></div>
     </div>
-    <div class="meta">Generated 2026-07-25 18:25 UTC &middot; source: all-results &middot; overall: <span class="badge badge-good">&#10003; PASS</span></div>
+    <div class="meta">Generated 2026-07-25 18:34 UTC &middot; source: all-results &middot; overall: <span class="badge badge-critical">&#10007; FAIL</span></div>
   </header>
   <div class="content">
   <div class="summary-strip">
-    <div class="summary-chip"><span>Spike</span><span class="badge badge-good">&#10003; PASS</span></div>
+    <div class="summary-chip"><span>Smoke</span><span class="badge badge-critical">&#10007; FAIL</span></div>
   </div>
-  <section class="card"><h2>Smoke Test <span class="muted">(no data)</span></h2><p class="muted">A *smoke*.jtl file was found but contained no sample rows.</p></section>
-<section class="card"><h2>Load Test <span class="muted">(no data)</span></h2><p class="muted">A *load*.jtl file was found but contained no sample rows.</p></section>
-<section class="card"><h2>Stress Test <span class="muted">(no data)</span></h2><p class="muted">A *stress*.jtl file was found but contained no sample rows.</p></section>
-
+  
     <section class="card">
       <div class="card-header">
-        <h2>Spike Test</h2>
-        <span class="badge badge-good">&#10003; PASS</span>
+        <h2>Smoke Test</h2>
+        <span class="badge badge-critical">&#10007; FAIL</span>
       </div>
       <div class="stat-row">
         <div class="stat-tile">
           <div class="stat-label">Samples</div>
-          <div class="stat-value">1300</div>
+          <div class="stat-value">1</div>
         </div>
         <div class="stat-tile">
           <div class="stat-label">Error rate</div>
-          <div class="stat-value">0.00%</div>
-          <div class="stat-sub">gate: &le;5% &middot; 0 broken, 0 slow-only</div>
+          <div class="stat-value">100.00%</div>
+          <div class="stat-sub">gate: &le;0% &middot; 1 broken, 0 slow-only</div>
         </div>
         <div class="stat-tile">
           <div class="stat-label">Avg response</div>
-          <div class="stat-value">38 ms</div>
+          <div class="stat-value">1314 ms</div>
         </div>
         <div class="stat-tile">
           <div class="stat-label">p95 response</div>
-          <div class="stat-value">67 ms</div>
+          <div class="stat-value">1314 ms</div>
         </div>
         <div class="stat-tile">
           <div class="stat-label">Slow samples</div>
-          <div class="stat-value">0</div>
-          <div class="stat-sub">SLA: 1200 ms baseline/recovery, 3000 ms during burst</div>
+          <div class="stat-value">1</div>
+          <div class="stat-sub">SLA: 800 ms</div>
         </div>
       </div>
       <table class="data-table">
@@ -165,14 +162,14 @@
           </tr>
         </thead>
         <tbody>
-          <tr><td>Spike burst · GET /posts</td><td class="num">600</td><td class="num">57 ms</td><td class="num">114 ms</td><td class="num">557 ms</td><td class="num">3000 ms</td><td><div class="bar-track"><div class="bar-fill" style="width:3.3%;background:var(--purple);"></div><div class="bar-threshold" style="left:87.0%;" title="SLA threshold: 3000 ms"></div></div></td><td class="num" title="Wrong status code or other non-timing assertion failure">0 (0.0%)</td><td class="num" title="Call completed but took longer than the SLA, regardless of pass/fail">0 (0.0%)</td><td><span class="dot dot-good"></span></td></tr>
-<tr><td>Recovery · GET /posts</td><td class="num">50</td><td class="num">30 ms</td><td class="num">68 ms</td><td class="num">73 ms</td><td class="num">1200 ms</td><td><div class="bar-track"><div class="bar-fill" style="width:2.0%;background:var(--purple);"></div><div class="bar-threshold" style="left:34.8%;" title="SLA threshold: 1200 ms"></div></div></td><td class="num" title="Wrong status code or other non-timing assertion failure">0 (0.0%)</td><td class="num" title="Call completed but took longer than the SLA, regardless of pass/fail">0 (0.0%)</td><td><span class="dot dot-good"></span></td></tr>
-<tr><td>Baseline · GET /posts</td><td class="num">50</td><td class="num">30 ms</td><td class="num">62 ms</td><td class="num">65 ms</td><td class="num">1200 ms</td><td><div class="bar-track"><div class="bar-fill" style="width:1.8%;background:var(--purple);"></div><div class="bar-threshold" style="left:34.8%;" title="SLA threshold: 1200 ms"></div></div></td><td class="num" title="Wrong status code or other non-timing assertion failure">0 (0.0%)</td><td class="num" title="Call completed but took longer than the SLA, regardless of pass/fail">0 (0.0%)</td><td><span class="dot dot-good"></span></td></tr>
-<tr><td>Spike burst · GET /users</td><td class="num">600</td><td class="num">21 ms</td><td class="num">27 ms</td><td class="num">68 ms</td><td class="num">3000 ms</td><td><div class="bar-track"><div class="bar-fill" style="width:0.8%;background:var(--purple);"></div><div class="bar-threshold" style="left:87.0%;" title="SLA threshold: 3000 ms"></div></div></td><td class="num" title="Wrong status code or other non-timing assertion failure">0 (0.0%)</td><td class="num" title="Call completed but took longer than the SLA, regardless of pass/fail">0 (0.0%)</td><td><span class="dot dot-good"></span></td></tr>
+          <tr><td>Login - GET /users/1</td><td class="num">1</td><td class="num">1314 ms</td><td class="num">1314 ms</td><td class="num">1314 ms</td><td class="num">800 ms</td><td><div class="bar-track"><div class="bar-fill" style="width:87.0%;background:var(--red);"></div><div class="bar-threshold" style="left:52.9%;" title="SLA threshold: 800 ms"></div></div></td><td class="num" title="Wrong status code or other non-timing assertion failure">1 (100.0%)</td><td class="num" title="Call completed but took longer than the SLA, regardless of pass/fail">1 (100.0%)</td><td><span class="dot dot-critical"></span></td></tr>
         </tbody>
       </table>
     </section>
     
+<section class="card"><h2>Load Test <span class="muted">(no data)</span></h2><p class="muted">Skipped this run (it only runs after smoke-test passes) — this is expected pipeline gating, not a report bug. Its job never ran, so there&#x27;s no .jtl to show.</p></section>
+<section class="card"><h2>Stress Test <span class="muted">(no data)</span></h2><p class="muted">Skipped this run (it only runs after load-test passes) — this is expected pipeline gating, not a report bug. Its job never ran, so there&#x27;s no .jtl to show.</p></section>
+<section class="card"><h2>Spike Test <span class="muted">(no data)</span></h2><p class="muted">Skipped this run (it only runs after smoke-test passes) — this is expected pipeline gating, not a report bug. Its job never ran, so there&#x27;s no .jtl to show.</p></section>
   <footer>
     <p>Each request row is checked against two independent gates: JMeter's Duration
     Assertion (fails the sample, feeding the Maven error-rate gate) and this
