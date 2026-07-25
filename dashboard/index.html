@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JMeter Performance Suite - Dashboard</title>
+<style>
+  .viz-root {
+    color-scheme: light;
+    --surface-1:      #fcfcfb;
+    --page-plane:     #f9f9f7;
+    --text-primary:   #0b0b0b;
+    --text-secondary: #52514e;
+    --text-muted:     #898781;
+    --gridline:       #e1e0d9;
+    --baseline:       #c3c2b7;
+    --border:         rgba(11,11,11,0.10);
+    --series-1:       #2a78d6;
+    --status-good:     #0ca30c;
+    --status-warning:  #fab219;
+    --status-serious:  #ec835a;
+    --status-critical: #d03b3b;
+  }
+  @media (prefers-color-scheme: dark) {
+    .viz-root {
+      color-scheme: dark;
+      --surface-1:      #1a1a19;
+      --page-plane:     #0d0d0d;
+      --text-primary:   #ffffff;
+      --text-secondary: #c3c2b7;
+      --text-muted:     #898781;
+      --gridline:       #2c2c2a;
+      --baseline:       #383835;
+      --border:         rgba(255,255,255,0.10);
+      --series-1:       #3987e5;
+      --status-good:     #0ca30c;
+      --status-warning:  #fab219;
+      --status-serious:  #ec835a;
+      --status-critical: #e66767;
+    }
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+    background: var(--page-plane);
+    color: var(--text-primary);
+  }
+  .viz-root { padding: 32px 24px 64px; max-width: 1080px; margin: 0 auto; }
+  header.top { margin-bottom: 24px; }
+  header.top h1 { margin: 0 0 4px; font-size: 22px; }
+  header.top .meta { color: var(--text-secondary); font-size: 13px; }
+  .summary-strip {
+    display: flex; flex-wrap: wrap; gap: 10px; margin: 16px 0 28px;
+  }
+  .summary-chip {
+    display: flex; align-items: center; gap: 8px;
+    background: var(--surface-1); border: 1px solid var(--border);
+    border-radius: 8px; padding: 8px 14px; font-size: 14px;
+  }
+  .card {
+    background: var(--surface-1);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px 24px;
+    margin-bottom: 20px;
+  }
+  .card-header { display: flex; align-items: center; justify-content: space-between; }
+  .card h2 { margin: 0; font-size: 17px; }
+  .badge {
+    display: inline-flex; align-items: center; gap: 6px;
+    font-size: 12px; font-weight: 600; letter-spacing: 0.02em;
+    padding: 4px 10px; border-radius: 999px;
+  }
+  .badge-good { background: color-mix(in srgb, var(--status-good) 16%, transparent); color: var(--status-good); }
+  .badge-critical { background: color-mix(in srgb, var(--status-critical) 16%, transparent); color: var(--status-critical); }
+  .stat-row {
+    display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px;
+    margin: 18px 0 20px;
+  }
+  .stat-tile {
+    background: var(--page-plane); border: 1px solid var(--border);
+    border-radius: 8px; padding: 10px 12px;
+  }
+  .stat-label { font-size: 11px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.04em; }
+  .stat-value { font-size: 20px; font-weight: 600; margin-top: 2px; }
+  .stat-sub { font-size: 11px; color: var(--text-muted); margin-top: 2px; }
+  table.data-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  table.data-table th {
+    text-align: left; font-weight: 600; color: var(--text-secondary);
+    border-bottom: 1px solid var(--gridline); padding: 8px 8px;
+    font-size: 11px; text-transform: uppercase; letter-spacing: 0.03em;
+  }
+  table.data-table td { padding: 8px 8px; border-bottom: 1px solid var(--gridline); vertical-align: middle; }
+  table.data-table td.num, table.data-table th.num { text-align: right; font-variant-numeric: tabular-nums; }
+  .muted { color: var(--text-muted); }
+  .bar-track {
+    position: relative; width: 140px; height: 8px;
+    background: var(--gridline); border-radius: 4px; overflow: visible;
+  }
+  .bar-fill { position: absolute; top: 0; left: 0; height: 100%; border-radius: 4px; }
+  .bar-threshold {
+    position: absolute; top: -3px; width: 2px; height: 14px;
+    background: var(--baseline);
+  }
+  .dot { display: inline-block; width: 10px; height: 10px; border-radius: 50%; }
+  .dot-good { background: var(--status-good); }
+  .dot-critical { background: var(--status-critical); }
+  footer { color: var(--text-muted); font-size: 12px; margin-top: 24px; }
+</style>
+</head>
+<body>
+<div class="viz-root">
+  <header class="top">
+    <h1>JMeter Performance Suite &mdash; Custom Dashboard</h1>
+    <div class="meta">Generated 2026-07-25 17:18 UTC &middot; source: all-results &middot; overall: <span class="badge badge-good">&#10003; PASS</span></div>
+  </header>
+  <div class="summary-strip">
+    <p class="muted">No result files found yet.</p>
+  </div>
+  <section class="card"><h2>Smoke Test <span class="muted">(no data)</span></h2><p class="muted">No matching *smoke*.jtl file found in the results directory.</p></section>
+<section class="card"><h2>Load Test <span class="muted">(no data)</span></h2><p class="muted">No matching *load*.jtl file found in the results directory.</p></section>
+<section class="card"><h2>Stress Test <span class="muted">(no data)</span></h2><p class="muted">No matching *stress*.jtl file found in the results directory.</p></section>
+<section class="card"><h2>Spike Test <span class="muted">(no data)</span></h2><p class="muted">No matching *spike*.jtl file found in the results directory.</p></section>
+  <footer>
+    Each request row is checked against two independent gates: JMeter's Duration
+    Assertion (fails the sample, feeding the Maven error-rate gate) and this
+    report's own re-check of elapsed time against the same SLA &mdash; so a
+    misconfigured assertion can't silently hide a slow endpoint.
+  </footer>
+</div>
+</body>
+</html>
