@@ -74,7 +74,7 @@ log.info(&quot;env_url resolved to: &quot; + resolved)
         </JSR223PreProcessor>
         <hashTree/>
         <CSVDataSet guiclass="TestBeanGUI" testclass="CSVDataSet" testname="CSV - Test Data">
-          <stringProp name="filename">src/test/resources/test-data.csv</stringProp>
+          <stringProp name="filename">${__property(project_basedir)}/src/test/resources/test-data.csv</stringProp>
           <stringProp name="variableNames">userId,postId,username</stringProp>
           <boolProp name="ignoreFirstLine">true</boolProp>
           <stringProp name="delimiter">,</stringProp>

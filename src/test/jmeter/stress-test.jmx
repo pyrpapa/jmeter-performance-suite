@@ -116,7 +116,7 @@
 
         <!-- CSV Data Set -->
         <CSVDataSet guiclass="TestBeanGUI" testclass="CSVDataSet" testname="Test Data CSV">
-          <stringProp name="filename">src/test/resources/test-data.csv</stringProp>
+          <stringProp name="filename">${__property(project_basedir)}/src/test/resources/test-data.csv</stringProp>
           <stringProp name="variableNames">userId,postId,username</stringProp>
           <boolProp name="ignoreFirstLine">true</boolProp>
           <stringProp name="delimiter">,</stringProp>

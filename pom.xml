@@ -66,6 +66,15 @@
                         <base.protocol>https</base.protocol>
                         <response_time_threshold_ms>${response.time.threshold.ms}</response_time_threshold_ms>
                         <spike_response_time_threshold_ms>${spike.response.time.threshold.ms}</spike_response_time_threshold_ms>
+                        <!-- jmeter-maven-plugin runs the JMeter engine with its working
+                             directory set to target/jmeter/, not the project root, so any
+                             CSVDataSet using a project-relative filename (e.g.
+                             "src/test/resources/test-data.csv") silently fails to resolve
+                             in that context even though it happens to work when run
+                             manually from the project folder. Exposing the real project
+                             basedir as a JMeter property lets the .jmx files build an
+                             absolute path instead via ${__property(project_basedir)}. -->
+                        <project_basedir>${project.basedir}</project_basedir>
                     </propertiesUser>
                 </configuration>
             </plugin>
