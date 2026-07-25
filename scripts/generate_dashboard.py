@@ -65,12 +65,23 @@ TEST_TYPES = {
 
 
 def find_jtl(results_dir, test_type):
-    """Locate the .jtl file for a test type regardless of naming convention
+    """Locate the result file for a test type regardless of naming convention
     or how deeply nested it ended up (CI artifact downloads can preserve
     the original target/jmeter/... folder structure depending on how many
-    paths were included in the matching upload-artifact step)."""
-    pattern = os.path.join(results_dir, "**", f"*{test_type}*.jtl")
-    candidates = sorted(glob.glob(pattern, recursive=True))
+    paths were included in the matching upload-artifact step).
+
+    The file extension varies too: run-tests.ps1 writes "<type>-results.jtl"
+    locally, while jmeter-maven-plugin in CI names the file after whatever
+    <resultsFileFormat> is configured in pom.xml (this project uses "csv",
+    which the plugin writes out as "<type>-test.csv", not ".jtl" - the
+    format setting changes the extension, not just the internal content).
+    Both extensions are searched so this works in either context.
+    """
+    candidates = []
+    for ext in ("jtl", "csv"):
+        pattern = os.path.join(results_dir, "**", f"*{test_type}*.{ext}")
+        candidates.extend(glob.glob(pattern, recursive=True))
+    candidates = sorted(set(candidates))
     # Prefer files that don't belong to another test type when names overlap
     # (none currently do - smoke/load/stress/spike are mutually exclusive
     # substrings - but this keeps the match unambiguous if that changes).
@@ -78,7 +89,7 @@ def find_jtl(results_dir, test_type):
         return None
     if len(candidates) > 1:
         print(
-            f"warning: multiple .jtl files matched '{test_type}': {candidates}; using {candidates[0]}",
+            f"warning: multiple result files matched '{test_type}': {candidates}; using {candidates[0]}",
             file=sys.stderr,
         )
     return candidates[0]
